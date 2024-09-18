@@ -19,6 +19,10 @@ require("lazy").setup({
     { import = "plugins.alpha" },
     { import = "plugins.lualine" },
     { import = "plugins.nvimtree" },
+    { import = "plugins.which_key" },
+    { import = "plugins.telescope" },
+    { import = "plugins.bufferline" },
+    { import = "plugins.autopairs" }, 
 },  {
     ui = {
         border = "double",

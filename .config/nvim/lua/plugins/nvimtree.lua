@@ -12,11 +12,12 @@ return {
 				number = true,
 				relativenumber = true,
 			},
-
 			filters = {
 				dotfiles = true,
 			},
-
+            git = {
+                ignore = false,
+            },
 			renderer = {
 				add_trailing = false,
 				group_empty = false,
