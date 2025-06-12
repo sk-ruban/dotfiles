@@ -9,12 +9,13 @@ plugins=(
 
 path=(
     '/opt/homebrew/bin'
-    '/Users/ruban/.juliaup/bin'
     $path
 )
 export PATH
 
-export FPATH="<path_to_eza>/completions/zsh:$FPATH"
+if command -v eza > /dev/null 2>&1; then
+    export FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+fi
 
 alias vim="nvim"
 alias ohmyzsh="mate ~/.oh-my-zsh"
