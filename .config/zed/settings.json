@@ -1,0 +1,78 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  
+  "theme": {
+    "mode": "system",
+    "light": "0x96f Theme",
+    "dark": "0x96f Theme"
+  },
+    
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font",
+    "font_size": 14
+  },
+
+  "tab_size": 4,
+  "soft_wrap": "none",
+  "confirm_quit": false,
+  "show_whitespaces": "selection",
+  "breadcrumbs": true,
+  
+  "project_panel": {
+    "dock": "left",
+    "default_width": 300
+  },
+  
+  "scrollbar": {
+    "show": "auto"
+  },
+  
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+        "enabled": false
+    }
+  },
+  
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "formatter": "auto",
+      "tab_size": 4
+    },
+    "Rust": {
+      "format_on_save": "on",
+      "tab_size": 4
+    },
+    "Haskell": {
+      "tab_size": 2
+    },
+    "TypeScript": {
+      "format_on_save": "on",
+      "tab_size": 2
+    },
+    "JavaScript": {
+      "format_on_save": "on", 
+      "tab_size": 2
+    },
+    "Astro": {
+      "format_on_save": "on",
+      "tab_size": 2
+    }
+  }
+}
