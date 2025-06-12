@@ -43,7 +43,7 @@ fi
 if ! command -v brew &> /dev/null; then
     print_status "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
+
     # Add Homebrew to PATH for M1/M2 Macs
     if [[ $(uname -m) == "arm64" ]]; then
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
@@ -106,7 +106,7 @@ if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
         $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 fi
 
-# zsh-autosuggestions  
+# zsh-autosuggestions
 if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
@@ -124,12 +124,12 @@ mkdir -p "$HOME/.config"
 create_symlink() {
     local source="$1"
     local target="$2"
-    
+
     if [ -e "$target" ] && [ ! -L "$target" ]; then
         print_warning "Backing up existing $target to $target.backup"
         mv "$target" "$target.backup"
     fi
-    
+
     ln -sf "$source" "$target"
     print_success "Linked $source -> $target"
 }
@@ -143,7 +143,11 @@ create_symlink "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
 create_symlink "$DOTFILES_DIR/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/.config/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
-create_symlink "$DOTFILES_DIR/.config/zed" "$HOME/.config/zed"
+
+print_status "Setting up Zed configuration..."
+mkdir -p "$HOME/.config/zed/themes"
+create_symlink "$DOTFILES_DIR/.config/zed/settings.json" "$HOME/.config/zed/settings.json"
+create_symlink "$DOTFILES_DIR/.config/zed/themes/0x96f-theme.json" "$HOME/.config/zed/themes/0x96f-theme.json"
 
 # Install tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
