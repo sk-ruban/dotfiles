@@ -20,6 +20,7 @@ These rules ensure maintainability, safety, and developer velocity.
 - **B3 (SHOULD)** Prefer simple, composable, testable functions.
 - **B4 (SHOULD NOT)** Add comments except for WHY decisions (business logic, performance tradeoffs, security considerations); rely on self‑explanatory code for WHAT.
 - **B5 (SHOULD NOT)** Extract a new function unless it will be reused elsewhere, is the only way to unit-test otherwise untestable logic, or drastically improves readability of an opaque block.
+- **B6 (SHOULD)** Prefer small files over few large ones.
 
 ---
 
