@@ -88,6 +88,15 @@ else
     print_success "JetBrainsMono Nerd Font already installed"
 fi
 
+# Install Claude Code
+if ! command -v claude &> /dev/null; then
+    print_status "Installing Claude Code..."
+    curl -fsSL https://claude.ai/install.sh | bash
+    print_success "Claude Code installed"
+else
+    print_success "Claude Code already installed"
+fi
+
 # Install Oh My Zsh if not present
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
@@ -143,6 +152,9 @@ create_symlink "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
 create_symlink "$DOTFILES_DIR/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/.config/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+
+mkdir -p "$HOME/.claude"
+create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 print_status "Setting up Zed configuration..."
 mkdir -p "$HOME/.config/zed/themes"
