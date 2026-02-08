@@ -156,6 +156,7 @@ create_symlink "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.tom
 mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/.claude/commands" "$HOME/.claude/commands"
+create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 
 print_status "Setting up Zed configuration..."
 mkdir -p "$HOME/.config/zed/themes"
