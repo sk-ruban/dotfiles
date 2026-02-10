@@ -1,0 +1,22 @@
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 16
+font-thicken = true
+
+# Theme
+theme = Gruvbox Dark Hard
+
+# Window
+window-padding-x = 15
+window-padding-y = 5,0
+background-opacity = 0.9
+background-blur-radius = 30
+
+# Behavior
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+
+# Quick Terminal 
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0.15
