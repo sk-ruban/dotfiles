@@ -149,25 +149,17 @@ create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
 
 # Symlink config directories
-create_symlink "$DOTFILES_DIR/.config/nvim" "$HOME/.config/nvim"
-create_symlink "$DOTFILES_DIR/.config/wezterm" "$HOME/.config/wezterm"
-create_symlink "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
+create_symlink "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
+create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
+create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
+create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
 
 mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/.claude/commands" "$HOME/.claude/commands"
 create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
-
-print_status "Setting up Zed configuration..."
-mkdir -p "$HOME/.config/zed/themes"
-create_symlink "$DOTFILES_DIR/.config/zed/settings.json" "$HOME/.config/zed/settings.json"
-create_symlink "$DOTFILES_DIR/.config/zed/themes/0x96f-theme.json" "$HOME/.config/zed/themes/0x96f-theme.json"
-
-print_status "Setting up Ghostty configuration..."
-create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
-
-print_status "Setting up Helix configuration..."
-create_symlink "$DOTFILES_DIR/.config/helix" "$HOME/.config/helix"
 
 # Install tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
