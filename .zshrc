@@ -1,14 +1,22 @@
+# ███████╗███████╗██╗  ██╗
+# ╚══███╔╝██╔════╝██║  ██║
+#   ███╔╝ ███████╗███████║
+#  ███╔╝  ╚════██║██╔══██║
+# ███████╗███████║██║  ██║
+# ╚══════╝╚══════╝╚═╝  ╚═╝
+
 export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
-	git 
+	git
 	zsh-syntax-highlighting
 	colored-man-pages
-    zsh-autosuggestions
+	zsh-autosuggestions
 )
 
 path=(
     '/opt/homebrew/bin'
+    "$HOME/.juliaup/bin"
     $path
 )
 export PATH
@@ -25,3 +33,5 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
