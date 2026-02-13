@@ -1,14 +1,10 @@
-Review all staged and unstaged changes for issues. Look for:
-- Logic errors or bugs
-- Missing error handling
-- Inconsistent naming or style
-- Dead code or unnecessary complexity
+Invoke the @code-simplifier:code-simplifier agent on all staged and unstaged changes.
 
-Then invoke the @code-simplifier:code-simplifier agent to refine the changed code.
+If code-simplifier finds issues worth addressing, report them and wait for instructions.
 
-After code-simplifier completes, if there are no warnings, errors, or issues worth addressing:
-1. Stage all changes
-2. Write a concise, conventional commit message describing the changes
+Otherwise:
+1. Stage only the relevant changed files (never blindly `git add -A`)
+2. Write a Conventional Commits message (`feat:`, `fix:`, `chore:`, etc.)
 3. Commit
 
-If there ARE issues, report them and wait for instructions before committing.
+After committing, if a PLAN.md exists in the repo root, mark any completed items as done (matching its existing format). Do not add or remove items. If no items match the committed changes, leave PLAN.md unchanged.
