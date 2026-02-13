@@ -109,9 +109,6 @@ fi
 # Install Oh My Zsh plugins
 print_status "Installing Oh My Zsh plugins..."
 
-# Install Ghostty config
-mkdir -p "$HOME/.config/ghostty"
-
 # zsh-syntax-highlighting
 if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
@@ -166,7 +163,11 @@ mkdir -p "$HOME/.config/zed/themes"
 create_symlink "$DOTFILES_DIR/.config/zed/settings.json" "$HOME/.config/zed/settings.json"
 create_symlink "$DOTFILES_DIR/.config/zed/themes/0x96f-theme.json" "$HOME/.config/zed/themes/0x96f-theme.json"
 
-create_symlink "$DOTFILES_DIR/.config/ghostty/config" "$HOME/.config/ghostty/config"
+print_status "Setting up Ghostty configuration..."
+create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
+
+print_status "Setting up Helix configuration..."
+create_symlink "$DOTFILES_DIR/.config/helix" "$HOME/.config/helix"
 
 # Install tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then

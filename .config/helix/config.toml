@@ -1,0 +1,31 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+line-number = "relative"
+scrolloff = 999
+true-color = true
+color-modes = true
+cursorline = true
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+left = ["mode", "selections"]
+center = ["file-name"]
+right = ["file-type", "file-encoding", "position"]
+
+[editor.file-picker]
+hidden = false
+
+[editor.search]
+smart-case = true
+
+[editor.soft-wrap]
+enable = true
+wrap-indicator = ""

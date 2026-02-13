@@ -9,14 +9,22 @@ theme = Gruvbox Dark Hard
 # Window
 window-padding-x = 15
 window-padding-y = 5,0
+window-padding-balance = false
 background-opacity = 0.9
 background-blur-radius = 30
 
 # Behavior
 mouse-hide-while-typing = true
 copy-on-select = clipboard
+confirm-close-surface = false
 
-# Quick Terminal 
+# Quick Terminal
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0.15
+
+# Keybinds
+keybind = cmd+ctrl+h=goto_split:left
+keybind = cmd+ctrl+j=goto_split:bottom
+keybind = cmd+ctrl+k=goto_split:top
+keybind = cmd+ctrl+l=goto_split:right
