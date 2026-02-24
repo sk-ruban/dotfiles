@@ -3,5 +3,8 @@ DS_Store
 .DS_Store
 *.DS_Store
 
+# Zed
+zed/prompts/
+
 # Claude Code
 /CLAUDE.md
