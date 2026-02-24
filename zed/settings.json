@@ -34,7 +34,7 @@
     "breadcrumbs": true,
 
     "project_panel": {
-        "dock": "left",
+        "dock": "right",
         "default_width": 300
     },
 
