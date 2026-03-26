@@ -161,6 +161,9 @@ create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/.claude/commands" "$HOME/.claude/commands"
 create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 
+mkdir -p "$HOME/.codex"
+create_symlink "$DOTFILES_DIR/.codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+
 # Install tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     print_status "Installing tmux plugin manager..."
