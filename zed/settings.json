@@ -57,7 +57,13 @@
         "Python": {
             "format_on_save": "on",
             "formatter": "auto",
-            "tab_size": 4
+            "tab_size": 4,
+            "language_servers": [
+                "basedpyright",
+                "ruff",
+                "!pylsp",
+                "..."
+            ]
         },
         "Rust": {
             "format_on_save": "on",
