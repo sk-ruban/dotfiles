@@ -97,6 +97,19 @@ else
     print_success "Claude Code already installed"
 fi
 
+# Install cship (Claude Code statusline renderer)
+if ! command -v cship &> /dev/null; then
+    if command -v cargo &> /dev/null; then
+        print_status "Installing cship..."
+        cargo install cship
+        print_success "cship installed"
+    else
+        print_warning "cargo not found, skipping cship. Install Rust, then run: cargo install cship"
+    fi
+else
+    print_success "cship already installed"
+fi
+
 # Install Oh My Zsh if not present
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
@@ -159,7 +172,11 @@ create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
 mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/.claude/commands" "$HOME/.claude/commands"
-create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+create_symlink "$DOTFILES_DIR/.claude/cship.toml" "$HOME/.claude/cship.toml"
+create_symlink "$DOTFILES_DIR/.claude/cship-starship.toml" "$HOME/.claude/cship-starship.toml"
+# TODO: ~/.claude/settings.json is not tracked, so the statusline must be wired up by hand:
+#   "statusLine": { "type": "command", "command":
+#     "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.cargo/bin/cship --config $HOME/.claude/cship.toml | sed -E 's/ \\([0-9]+[KM] context\\)//'" }
 
 mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/.codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
@@ -177,3 +194,8 @@ fi
 print_success "Dotfiles installation complete!"
 print_status "Please restart your terminal or run 'source ~/.zshrc' to load the new configuration"
 print_status "For tmux plugins, start tmux and press 'Ctrl+x + I'"
+
+if ! grep -q "cship" "$HOME/.claude/settings.json" 2>/dev/null; then
+    print_warning "Statusline not wired up. Add to ~/.claude/settings.json (not tracked by this repo):"
+    echo '  "statusLine": { "type": "command", "command": "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.cargo/bin/cship --config $HOME/.claude/cship.toml | sed -E '"'"'s/ \\([0-9]+[KM] context\\)//'"'"'" }'
+fi
