@@ -1,0 +1,31 @@
+# --config is required: without it cship finds this repo's starship.toml and renders nothing.
+# Starship modules ignore --config, so they live in cship-starship.toml via STARSHIP_CONFIG.
+
+[cship]
+lines = [
+  "$directory $git_branch [│](fg:#585b70) [+](fg:#a6e3a1)$cship.cost.total_lines_added [−](fg:#f38ba8)$cship.cost.total_lines_removed [│](fg:#585b70) $cship.model $cship.context_bar $cship.cost",
+]
+
+[cship.model]
+style = "fg:#94e2d5"
+
+[cship.cost.total_lines_added]
+style = "fg:#a6e3a1"
+
+[cship.cost.total_lines_removed]
+style = "fg:#f38ba8"
+
+[cship.context_bar]
+width = 10
+style = "fg:#a6e3a1"
+warn_threshold = 60.0
+warn_style = "fg:#f9e2af"
+critical_threshold = 85.0
+critical_style = "bold fg:#f38ba8"
+
+[cship.cost]
+style = "fg:#cba6f7"
+warn_threshold = 25.0
+warn_style = "fg:#f9e2af"
+critical_threshold = 50.0
+critical_style = "bold fg:#f38ba8"

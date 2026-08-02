@@ -1,0 +1,20 @@
+# Statusline-only starship config (via STARSHIP_CONFIG) — cship ignores starship modules passed through --config.
+
+[directory]
+style = "fg:#fab387"
+truncate_to_repo = false
+truncation_length = 3
+truncation_symbol = ""
+format = "[$path]($style)"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "fg:#89dceb"
+format = "[$symbol $branch]($style)"
