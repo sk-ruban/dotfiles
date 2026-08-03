@@ -72,20 +72,18 @@ else
     print_success "Claude Code already installed"
 fi
 
-# Install Rust via rustup (provides cargo, needed for cship)
-if ! command -v cargo &> /dev/null; then
-    print_status "Installing Rust..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
-    print_success "Rust installed"
-else
-    print_success "Rust already installed"
-fi
-
 # Install cship (Claude Code statusline renderer)
 if ! command -v cship &> /dev/null; then
     print_status "Installing cship..."
-    cargo install cship
+    case "$(uname -m)" in
+        arm64)  CSHIP_TARGET="aarch64-apple-darwin" ;;
+        x86_64) CSHIP_TARGET="x86_64-apple-darwin" ;;
+        *)      print_error "Unsupported architecture: $(uname -m)"; exit 1 ;;
+    esac
+    mkdir -p "$HOME/.local/bin"
+    curl -fsSL "https://github.com/stephenleo/cship/releases/latest/download/cship-${CSHIP_TARGET}" \
+        -o "$HOME/.local/bin/cship"
+    chmod +x "$HOME/.local/bin/cship"
     print_success "cship installed"
 else
     print_success "cship already installed"
@@ -99,23 +97,6 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 else
     print_success "Oh My Zsh already installed"
 fi
-
-# Install Oh My Zsh plugins
-print_status "Installing Oh My Zsh plugins..."
-
-# zsh-syntax-highlighting
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-fi
-
-# zsh-autosuggestions
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-        $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-fi
-
-print_success "Oh My Zsh plugins installed"
 
 # Create symlinks for config files
 print_status "Creating symlinks for config files..."
@@ -172,5 +153,5 @@ print_status "Please restart your terminal or run 'source ~/.zshrc' to load the 
 
 if ! grep -q "cship" "$HOME/.claude/settings.json" 2>/dev/null; then
     print_warning "Statusline not wired up. Add to ~/.claude/settings.json (not tracked by this repo):"
-    echo '  "statusLine": { "type": "command", "command": "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.cargo/bin/cship --config $HOME/.claude/cship.toml | sed -E '"'"'s/ \\([0-9]+[KM] context\\)//'"'"'" }'
+    echo '  "statusLine": { "type": "command", "command": "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.local/bin/cship --config $HOME/.claude/cship.toml | sed -E '"'"'s/ \\([0-9]+[KM] context\\)//'"'"'" }'
 fi
