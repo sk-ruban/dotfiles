@@ -1,27 +1,26 @@
 tap "homebrew/bundle"
 
 brew "eza"
+brew "fastfetch"
+brew "ffmpeg"
+brew "gh"
 brew "git"
-brew "llvm"
+brew "helix"
 brew "mas"
-brew "neofetch"
 brew "neovim"
 brew "ripgrep"
 brew "starship"
 brew "tmux"
-brew "tree"
 brew "zoxide"
-brew "zsh-autosuggestions"
+
+cask "ghostty"
+cask "zed"
 
 cask "font-jetbrains-mono-nerd-font"
-cask "font-meslo-lg-nerd-font"
 
 # Mac App Store
 mas "Bear", id: 1091189122
 mas "Craft", id: 1487937127
-mas "Microsoft Outlook", id: 985367838
-mas "OneDrive", id: 823766827
-mas "Reeder", id: 1449412482
 mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
 mas "Velja", id: 1607635845

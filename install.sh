@@ -54,38 +54,13 @@ else
     print_success "Homebrew already installed"
 fi
 
-# Install essential packages
-print_status "Installing packages via Homebrew..."
-brew install \
-    neovim \
-    tmux \
-    starship \
-    eza \
-    zoxide \
-    git \
-    curl \
-    wget
-
-# Install WezTerm
-if ! brew list --cask wezterm &> /dev/null; then
-    print_status "Installing WezTerm..."
-    brew install --cask wezterm
-    print_success "WezTerm installed"
+# Non-fatal: mas entries fail when not signed into the App Store, and set -e would abort the install
+print_status "Installing packages from Brewfile..."
+if brew bundle --file="$DOTFILES_DIR/Brewfile"; then
+    print_success "Brewfile packages installed"
 else
-    print_success "WezTerm already installed"
-fi
-
-# Install JetBrainsMono Nerd Font
-if ! brew list --cask font-jetbrains-mono-nerd-font &> /dev/null; then
-    print_status "Installing JetBrainsMono Nerd Font..."
-    if brew install --cask font-jetbrains-mono-nerd-font; then
-        print_success "JetBrainsMono Nerd Font installed"
-    else
-        print_warning "Font installation failed, you can install it manually later"
-        print_status "Alternative: Download from https://github.com/ryanoasis/nerd-fonts"
-    fi
-else
-    print_success "JetBrainsMono Nerd Font already installed"
+    print_warning "Some Brewfile entries failed. Check the output above."
+    print_status "App Store apps need you signed into the App Store"
 fi
 
 # Install Claude Code
@@ -97,15 +72,21 @@ else
     print_success "Claude Code already installed"
 fi
 
+# Install Rust via rustup (provides cargo, needed for cship)
+if ! command -v cargo &> /dev/null; then
+    print_status "Installing Rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+    print_success "Rust installed"
+else
+    print_success "Rust already installed"
+fi
+
 # Install cship (Claude Code statusline renderer)
 if ! command -v cship &> /dev/null; then
-    if command -v cargo &> /dev/null; then
-        print_status "Installing cship..."
-        cargo install cship
-        print_success "cship installed"
-    else
-        print_warning "cargo not found, skipping cship. Install Rust, then run: cargo install cship"
-    fi
+    print_status "Installing cship..."
+    cargo install cship
+    print_success "cship installed"
 else
     print_success "cship already installed"
 fi
@@ -113,7 +94,7 @@ fi
 # Install Oh My Zsh if not present
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
     print_success "Oh My Zsh installed"
 else
     print_success "Oh My Zsh already installed"
@@ -162,7 +143,6 @@ create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 # Symlink config directories
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
 create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
@@ -173,9 +153,6 @@ create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/claude/commands" "$HOME/.claude/commands"
 create_symlink "$DOTFILES_DIR/claude/cship.toml" "$HOME/.claude/cship.toml"
 create_symlink "$DOTFILES_DIR/claude/cship-starship.toml" "$HOME/.claude/cship-starship.toml"
-# TODO: ~/.claude/settings.json is not tracked, so the statusline must be wired up by hand:
-#   "statusLine": { "type": "command", "command":
-#     "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.cargo/bin/cship --config $HOME/.claude/cship.toml | sed -E 's/ \\([0-9]+[KM] context\\)//'" }
 
 mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
@@ -192,7 +169,6 @@ fi
 
 print_success "Dotfiles installation complete!"
 print_status "Please restart your terminal or run 'source ~/.zshrc' to load the new configuration"
-print_status "For tmux plugins, start tmux and press 'Ctrl+x + I'"
 
 if ! grep -q "cship" "$HOME/.claude/settings.json" 2>/dev/null; then
     print_warning "Statusline not wired up. Add to ~/.claude/settings.json (not tracked by this repo):"
