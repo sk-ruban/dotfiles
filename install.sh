@@ -56,7 +56,7 @@ fi
 
 # Non-fatal: mas entries fail when not signed into the App Store, and set -e would abort the install
 print_status "Installing packages from Brewfile..."
-if brew bundle --file="$DOTFILES_DIR/Brewfile"; then
+if brew bundle --file="$DOTFILES_DIR/homebrew/Brewfile"; then
     print_success "Brewfile packages installed"
 else
     print_warning "Some Brewfile entries failed. Check the output above."
@@ -128,12 +128,12 @@ create_symlink() {
 }
 
 # Symlink dotfiles
-create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
-create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
+create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+create_symlink "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
 
 # Symlink config directories
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-create_symlink "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
+create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
 create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
 create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
