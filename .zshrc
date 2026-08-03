@@ -14,8 +14,8 @@ plugins=(
 
 typeset -U path
 path=(
+    "$HOME/.local/bin"
     '/opt/homebrew/bin'
-    "$HOME/.juliaup/bin"(N)
     "$HOME/.codeium/windsurf/bin"(N)
     $path
 )
@@ -31,6 +31,7 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
+alias py="python3"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="eza --group-directories-first"
 alias ll="eza -lh --git --group-directories-first"
