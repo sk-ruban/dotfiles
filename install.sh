@@ -159,7 +159,6 @@ create_symlink() {
 # Symlink dotfiles
 create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
-create_symlink "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
 
 # Symlink config directories
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
@@ -170,16 +169,16 @@ create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
 create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
 
 mkdir -p "$HOME/.claude"
-create_symlink "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/.claude/commands" "$HOME/.claude/commands"
-create_symlink "$DOTFILES_DIR/.claude/cship.toml" "$HOME/.claude/cship.toml"
-create_symlink "$DOTFILES_DIR/.claude/cship-starship.toml" "$HOME/.claude/cship-starship.toml"
+create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+create_symlink "$DOTFILES_DIR/claude/commands" "$HOME/.claude/commands"
+create_symlink "$DOTFILES_DIR/claude/cship.toml" "$HOME/.claude/cship.toml"
+create_symlink "$DOTFILES_DIR/claude/cship-starship.toml" "$HOME/.claude/cship-starship.toml"
 # TODO: ~/.claude/settings.json is not tracked, so the statusline must be wired up by hand:
 #   "statusLine": { "type": "command", "command":
 #     "STARSHIP_CONFIG=$HOME/.claude/cship-starship.toml $HOME/.cargo/bin/cship --config $HOME/.claude/cship.toml | sed -E 's/ \\([0-9]+[KM] context\\)//'" }
 
 mkdir -p "$HOME/.codex"
-create_symlink "$DOTFILES_DIR/.codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 
 # Install tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
