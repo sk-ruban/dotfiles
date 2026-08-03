@@ -63,6 +63,15 @@ else
     print_status "App Store apps need you signed into the App Store"
 fi
 
+# Install Python via uv
+if command -v uv &> /dev/null; then
+    print_status "Installing Python via uv..."
+    uv python install --default
+    print_success "Python installed"
+else
+    print_warning "uv not found, skipping Python install"
+fi
+
 # Install Claude Code
 if ! command -v claude &> /dev/null; then
     print_status "Installing Claude Code..."
@@ -73,7 +82,7 @@ else
 fi
 
 # Install cship (Claude Code statusline renderer)
-if ! command -v cship &> /dev/null; then
+if [ ! -x "$HOME/.local/bin/cship" ]; then
     print_status "Installing cship..."
     case "$(uname -m)" in
         arm64)  CSHIP_TARGET="aarch64-apple-darwin" ;;
