@@ -1,0 +1,34 @@
+[user]
+	name = Ruban
+	email = 65346010+sk-ruban@users.noreply.github.com
+
+# Untracked machine-local overrides; git silently skips this if absent
+[include]
+	path = ~/.config/git/local
+
+[core]
+	editor = hx
+	ignorecase = true
+
+[init]
+	defaultBranch = main
+
+[push]
+	default = current
+
+[pull]
+	rebase = true
+
+# git auth piggybacks on the gh CLI login (gh auth setup-git)
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
