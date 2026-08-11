@@ -130,6 +130,7 @@ create_symlink() {
 # Symlink dotfiles
 create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 create_symlink "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
+create_symlink "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
 
 # Symlink config directories
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
