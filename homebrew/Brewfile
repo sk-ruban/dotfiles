@@ -27,7 +27,9 @@ cask "zed"
 cask "font-jetbrains-mono-nerd-font"
 
 # Mac App Store
+mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
+mas "CotEditor", id: 1024640650
 mas "Craft", id: 1487937127
 mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
