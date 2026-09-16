@@ -23,8 +23,11 @@ export PATH
 export EDITOR="hx"
 export VISUAL="hx"
 
-if command -v eza > /dev/null 2>&1; then
-    export FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+brew_prefix=""
+command -v brew > /dev/null 2>&1 && brew_prefix="$(brew --prefix)"
+
+if [ -n "$brew_prefix" ] && command -v eza > /dev/null 2>&1; then
+    export FPATH="$brew_prefix/share/zsh/site-functions:$FPATH"
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -50,8 +53,10 @@ command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
-    f="$(brew --prefix)/share/$plugin/$plugin.zsh"
-    [ -f "$f" ] && source "$f"
-done
-unset plugin f
+if [ -n "$brew_prefix" ]; then
+    for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+        f="$brew_prefix/share/$plugin/$plugin.zsh"
+        [ -f "$f" ] && source "$f"
+    done
+fi
+unset brew_prefix plugin f

@@ -121,7 +121,7 @@ mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 
 # Install Claude Code
-if ! command -v claude &> /dev/null; then
+if ! command -v claude &> /dev/null && [ ! -x "$HOME/.local/bin/claude" ]; then
     print_status "Installing Claude Code..."
     # Download first so a curl failure is not masked by an empty bash succeeding
     claude_installer="$(mktemp)"

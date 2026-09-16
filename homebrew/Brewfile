@@ -18,7 +18,12 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
+cask "cleanshot"
 cask "ghostty"
+cask "github"
+cask "notchi"
+cask "raycast"
+cask "rectangle"
 cask "zed"
 
 cask "font-jetbrains-mono-nerd-font"

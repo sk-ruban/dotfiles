@@ -12,7 +12,7 @@ cd dotfiles
 ./install.sh
 ```
 
-Installs Homebrew, everything in `homebrew/Brewfile`, Claude Code, cship and Python via uv, then symlinks each config to where its tool expects it. Safe to re-run — existing files are backed up to `<file>.backup` before being replaced.
+Installs Homebrew, everything in `homebrew/Brewfile`, Python via uv and Oh My Zsh, symlinks each config to where its tool expects it, then installs Claude Code and cship. Safe to re-run — existing files are backed up to `<file>.backup` before being replaced.
 
 ## Layout
 
