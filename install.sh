@@ -72,32 +72,6 @@ else
     print_warning "uv not found, skipping Python install"
 fi
 
-# Install Claude Code
-if ! command -v claude &> /dev/null; then
-    print_status "Installing Claude Code..."
-    curl -fsSL https://claude.ai/install.sh | bash
-    print_success "Claude Code installed"
-else
-    print_success "Claude Code already installed"
-fi
-
-# Install cship (Claude Code statusline renderer)
-if [ ! -x "$HOME/.local/bin/cship" ]; then
-    print_status "Installing cship..."
-    case "$(uname -m)" in
-        arm64)  CSHIP_TARGET="aarch64-apple-darwin" ;;
-        x86_64) CSHIP_TARGET="x86_64-apple-darwin" ;;
-        *)      print_error "Unsupported architecture: $(uname -m)"; exit 1 ;;
-    esac
-    mkdir -p "$HOME/.local/bin"
-    curl -fsSL "https://github.com/stephenleo/cship/releases/latest/download/cship-${CSHIP_TARGET}" \
-        -o "$HOME/.local/bin/cship"
-    chmod +x "$HOME/.local/bin/cship"
-    print_success "cship installed"
-else
-    print_success "cship already installed"
-fi
-
 # Install Oh My Zsh if not present
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
@@ -123,7 +97,7 @@ create_symlink() {
         mv "$target" "$target.backup"
     fi
 
-    ln -sf "$source" "$target"
+    ln -sfn "$source" "$target"
     print_success "Linked $source -> $target"
 }
 
@@ -145,6 +119,39 @@ create_symlink "$DOTFILES_DIR/claude/cship-starship.toml" "$HOME/.claude/cship-s
 
 mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+
+# Install Claude Code
+if ! command -v claude &> /dev/null; then
+    print_status "Installing Claude Code..."
+    if curl -fsSL https://claude.ai/install.sh | bash; then
+        print_success "Claude Code installed"
+    else
+        print_warning "Claude Code install failed. Re-run install.sh or install it manually later."
+    fi
+else
+    print_success "Claude Code already installed"
+fi
+
+# Install cship (Claude Code statusline renderer)
+if [ ! -x "$HOME/.local/bin/cship" ]; then
+    print_status "Installing cship..."
+    case "$(uname -m)" in
+        arm64)  CSHIP_TARGET="aarch64-apple-darwin" ;;
+        x86_64) CSHIP_TARGET="x86_64-apple-darwin" ;;
+        *)      print_error "Unsupported architecture: $(uname -m)"; exit 1 ;;
+    esac
+    mkdir -p "$HOME/.local/bin"
+    if curl -fsSL "https://github.com/stephenleo/cship/releases/latest/download/cship-${CSHIP_TARGET}" \
+        -o "$HOME/.local/bin/cship"; then
+        chmod +x "$HOME/.local/bin/cship"
+        print_success "cship installed"
+    else
+        rm -f "$HOME/.local/bin/cship"
+        print_warning "cship download failed. Re-run install.sh to retry."
+    fi
+else
+    print_success "cship already installed"
+fi
 
 print_success "Dotfiles installation complete!"
 print_status "Please restart your terminal or run 'source ~/.zshrc' to load the new configuration"
