@@ -16,7 +16,6 @@ typeset -U path
 path=(
     "$HOME/.local/bin"
     '/opt/homebrew/bin'
-    "$HOME/.codeium/windsurf/bin"(N)
     $path
 )
 export PATH
@@ -32,10 +31,10 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
 alias py="python3"
-alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="eza --group-directories-first"
 alias ll="eza -lh --git --group-directories-first"
 alias lt="eza --tree --level=2 --git-ignore"
+alias bu="brew update && brew upgrade && brew cleanup"
 
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
