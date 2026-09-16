@@ -18,10 +18,10 @@ Installs Homebrew, everything in `homebrew/Brewfile`, Claude Code, cship and Pyt
 
 ```
 zsh/         zshrc
-tmux/        tmux.conf
+tmux/        tmux.conf          (kept for reference, not installed)
 starship/    starship.toml
 homebrew/    Brewfile
-nvim/        init.lua, lua/plugins/*
+nvim/        init.lua, lua/plugins/*   (kept for reference, not installed)
 helix/       config.toml
 ghostty/     config
 zed/         settings.json, themes/
@@ -37,7 +37,6 @@ mac/         system preference scripts, run manually
 
 - **Statusline** — `~/.claude/settings.json` isn't tracked. `install.sh` prints the `statusLine` block to paste if it isn't already configured.
 - **System preferences** — the scripts in `mac/` use `defaults write` to change Dock, Finder and keyboard settings. Run them individually.
-- **tmux plugins** — start tmux and press `prefix + I`.
 
 ## Requirements
 
