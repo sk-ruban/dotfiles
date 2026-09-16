@@ -26,17 +26,12 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit 1
 fi
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run with sudo privileges. Exiting..."
-   exit 1
-fi
-
 echo "Running all preference scripts..."
 
-# Close any open System Preferences panes, to prevent them from overriding
+# Close any open System Settings panes, to prevent them from overriding
 # settings we're about to change
-echo "Closing System Preferences..."
-osascript -e 'tell application "System Preferences" to quit'
+echo "Closing System Settings..."
+osascript -e 'tell application "System Settings" to quit'
 
 # Source each script
 echo "Running dock preferences..."
@@ -47,5 +42,8 @@ source "$BASE_DIR/finder-preferences.sh"
 
 echo "Running misc preferences..."
 source "$BASE_DIR/misc-preferences.sh"
+
+echo "Running keyboard preferences..."
+source "$BASE_DIR/keyboard-preferences.sh"
 
 echo "All preference scripts have been executed."
