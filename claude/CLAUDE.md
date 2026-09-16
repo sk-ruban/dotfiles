@@ -9,13 +9,6 @@ Start every feature with: "Let me research the codebase and create a plan before
 
 ---
 
-# 0 — Purpose
-
-These rules ensure maintainability, safety, and developer velocity.
-**MUST** rules are enforced by CI; **SHOULD** rules are strongly recommended.
-
----
-
 # 1 — Before Coding
 
 - **A1 (SHOULD)** Ask the user clarifying questions.

@@ -1,6 +1,10 @@
-Invoke the @code-simplifier:code-simplifier agent on all staged and unstaged changes.
+---
+description: Simplify staged changes, then commit with a Conventional Commits message
+---
 
-If code-simplifier finds issues worth addressing, report them and wait for instructions.
+Run /simplify on all staged and unstaged changes.
+
+If it finds issues worth addressing, report them and wait for instructions.
 
 Otherwise:
 1. Stage only the relevant changed files (never blindly `git add -A`)
