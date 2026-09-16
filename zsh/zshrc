@@ -45,10 +45,13 @@ function y() {
     rm -f -- "$tmp"
 }
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+command -v starship > /dev/null 2>&1 && eval "$(starship init zsh)"
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+    f="$(brew --prefix)/share/$plugin/$plugin.zsh"
+    [ -f "$f" ] && source "$f"
+done
+unset plugin f
