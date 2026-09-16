@@ -129,11 +129,9 @@ create_symlink() {
 
 # Symlink dotfiles
 create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
-create_symlink "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
 
 # Symlink config directories
-create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
 create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
@@ -147,16 +145,6 @@ create_symlink "$DOTFILES_DIR/claude/cship-starship.toml" "$HOME/.claude/cship-s
 
 mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
-
-# Install tmux plugin manager
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    print_status "Installing tmux plugin manager..."
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-    print_success "tmux plugin manager installed"
-    print_warning "Run 'tmux' then press 'Ctrl+x + I' to install tmux plugins"
-else
-    print_success "tmux plugin manager already installed"
-fi
 
 print_success "Dotfiles installation complete!"
 print_status "Please restart your terminal or run 'source ~/.zshrc' to load the new configuration"
