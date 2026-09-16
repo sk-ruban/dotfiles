@@ -123,11 +123,14 @@ create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 # Install Claude Code
 if ! command -v claude &> /dev/null; then
     print_status "Installing Claude Code..."
-    if curl -fsSL https://claude.ai/install.sh | bash; then
+    # Download first so a curl failure is not masked by an empty bash succeeding
+    claude_installer="$(mktemp)"
+    if curl -fsSL https://claude.ai/install.sh -o "$claude_installer" && bash "$claude_installer"; then
         print_success "Claude Code installed"
     else
         print_warning "Claude Code install failed. Re-run install.sh or install it manually later."
     fi
+    rm -f "$claude_installer"
 else
     print_success "Claude Code already installed"
 fi
