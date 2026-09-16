@@ -8,21 +8,6 @@
 
 echo -e "Setting Dock preferences...\n\n"
 
-# System Preferences > Dock > Size:
-echo "Setting dock size..."
-defaults write com.apple.dock tilesize -int 80
-echo -e "\tDock size set! \n"
-
-# System Preferences > Dock > Magnification:
-echo "Enabling dock magnification..."
-defaults write com.apple.dock magnification -bool true
-echo -e "\tDock magnification enabled! \n"
-
-# System Preferences > Dock > Magnification size:
-echo "Setting magnification size..."
-defaults write com.apple.dock largesize -int 90
-echo -e "\tMagnification size set! \n"
-
 # System Preferences > Dock > Minimize windows using: Genie effect
 echo "Minimize windows with 'genie' effect..."
 defaults write com.apple.dock mineffect -string "genie"
