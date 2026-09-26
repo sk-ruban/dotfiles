@@ -14,3 +14,11 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{ en
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# System Settings > Control Center > Battery > Show Percentage
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+killall ControlCenter
+
+# System Settings > Control Center > Clock Options > Display the time with seconds
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
+killall SystemUIServer

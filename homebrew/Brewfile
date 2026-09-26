@@ -1,3 +1,4 @@
+brew "bun"
 brew "eza"
 brew "fastfetch"
 brew "ffmpeg"
