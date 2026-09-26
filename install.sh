@@ -111,6 +111,9 @@ create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
 create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
 create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
 
+mkdir -p "$HOME/.config/raycast"
+create_symlink "$DOTFILES_DIR/raycast/scripts" "$HOME/.config/raycast/scripts"
+
 mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/claude/commands" "$HOME/.claude/commands"

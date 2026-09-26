@@ -27,6 +27,7 @@ ghostty/     config
 zed/         settings.json, themes/
 wezterm/     wezterm.lua        (kept for reference, using ghostty)
 claude/      CLAUDE.md, commands/, cship*.toml
+raycast/     scripts/           Raycast script commands
 codex/       AGENTS.md
 mac/         system preference scripts, run manually
 ```
@@ -36,6 +37,7 @@ mac/         system preference scripts, run manually
 `install.sh` doesn't do these:
 
 - **Statusline** — `~/.claude/settings.json` isn't tracked. `install.sh` prints the `statusLine` block to paste if it isn't already configured.
+- **Raycast script commands** — In Raycast Settings → Extensions → Script Commands, add `~/.config/raycast/scripts` as a directory once.
 - **System preferences** — the scripts in `mac/` use `defaults write` to change Dock, Finder and keyboard settings. Run them individually.
 
 ## Requirements
