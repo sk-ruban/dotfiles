@@ -23,6 +23,7 @@ cask "github"
 cask "notchi"
 cask "raycast"
 cask "rectangle"
+cask "t3-code"
 cask "zed"
 
 cask "font-jetbrains-mono-nerd-font"
