@@ -46,4 +46,7 @@ source "$BASE_DIR/misc-preferences.sh"
 echo "Running keyboard preferences..."
 source "$BASE_DIR/keyboard-preferences.sh"
 
+echo "Running rectangle preferences..."
+source "$BASE_DIR/rectangle-preferences.sh"
+
 echo "All preference scripts have been executed."
