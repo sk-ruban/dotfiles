@@ -26,9 +26,9 @@ helix/       config.toml
 ghostty/     config
 zed/         settings.json, themes/
 wezterm/     wezterm.lua        (kept for reference, using ghostty)
-claude/      CLAUDE.md, commands/, cship*.toml
+claude/      CLAUDE.md, commands/, rules/, cship*.toml
 raycast/     scripts/           Raycast script commands
-codex/       AGENTS.md
+codex/       AGENTS.md          symlink to claude/CLAUDE.md
 mac/         system preference scripts, run manually
 ```
 
