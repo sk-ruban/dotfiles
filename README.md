@@ -38,7 +38,7 @@ mac/         system preference scripts, run manually
 
 - **Statusline** — `~/.claude/settings.json` isn't tracked. `install.sh` prints the `statusLine` block to paste if it isn't already configured.
 - **Raycast script commands** — In Raycast Settings → Extensions → Script Commands, add `~/.config/raycast/scripts` as a directory once.
-- **System preferences** — the scripts in `mac/` use `defaults write` to change Dock, Finder and keyboard settings. Run them individually.
+- **System preferences** — the scripts in `mac/` use `defaults write` to change Dock, Finder, keyboard and Rectangle settings. Run them individually.
 
 ## Requirements
 
